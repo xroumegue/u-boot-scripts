@@ -1,6 +1,6 @@
 frodon=192.168.1.24
 dhcp ${kernel_load_address} ${frodon}:uImage
-dhcp ${ramdisk_load_address} ${frodon}:uramdisk.image.gz
+dhcp ${ramdisk_load_address} ${frodon}:rootfs.cpio.uboot
 dhcp ${devicetree_load_address} ${frodon}:zynq-zturn.dtb
 bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}
 
