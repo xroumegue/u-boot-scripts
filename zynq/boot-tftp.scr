@@ -2,7 +2,7 @@ frodon=192.168.1.24
 dhcp ${kernel_load_address} ${frodon}:uImage
 dhcp ${ramdisk_load_address} ${frodon}:rootfs.cpio.uboot
 dhcp ${devicetree_load_address} ${frodon}:zynq-zturn.dtb
-setenv bootargs $bootargs  ' uio_pdrv_genirq.of_id=\"generic-uio\"'
+setenv bootargs 'console=ttyPS0,115200 root=/dev/ram rw earlyprintk uio_pdrv_genirq.of_id=\"generic-uio\"'
 printenv bootargs
 bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}
 
