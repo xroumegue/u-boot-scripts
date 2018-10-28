@@ -1,9 +1,12 @@
-frodon=192.168.1.24
-dhcp ${kernel_load_address} ${frodon}:uImage
-dhcp ${ramdisk_load_address} ${frodon}:rootfs.cpio.uboot
-dhcp ${devicetree_load_address} ${frodon}:zynq-zturn.dtb
-setenv bootargs 'console=ttyPS0,115200 root=/dev/ram rw earlyprintk uio_pdrv_genirq.of_id=\"generic-uio\"'
+frodon=192.168.1.4
+dhcp ${kernel_addr_r} ${frodon}:uImage
+dhcp ${ramdisk_addr_r} ${frodon}:rootfs.cpio.uboot
+dhcp ${fdt_addr_r} ${frodon}:zynq-zturn.dtb
+setenv bootargs 'console=ttyPS0,115200 root=/dev/ram rw uio_pdrv_genirq.of_id=\"generic-uio\"'
+fdt addr ${fdt_addr_r}
+fdt resize
+fdt set /amba/serial@e0000000 status "ko"
 printenv bootargs
-bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}
+bootm ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}
 
 
